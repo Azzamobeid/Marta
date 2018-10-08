@@ -1,0 +1,359 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateLocations (20180920131846)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "locations" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "address" varchar, "city" varchar, "latitude" float, "longitude" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20180920131846_create_locations.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180920131846"]]
+  ↳ bin/rails:9
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-09-20 13:19:33.877893"], ["updated_at", "2018-09-20 13:19:33.877893"]]
+  ↳ bin/rails:9
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Started GET "/" for 127.0.0.1 at 2018-09-20 09:07:01 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/azzamobeid/.rvm/gems/ruby-2.4.4/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by LocationsController#new as HTML
+  Rendering locations/new.html.erb within layouts/application
+  Rendered locations/_form.html.erb (173.2ms)
+  Rendered locations/new.html.erb within layouts/application (177.6ms)
+Completed 500 Internal Server Error in 212ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `location' for #<#<Class:0x00007ffb268f1cd0>:0x00007ffb268e8180>
+Did you mean?  @location):
+    1: <%= form_with(model: location, local: true) do |form| %>
+    2:   <% if location.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
+  
+app/views/locations/_form.html.erb:1:in `_app_views_locations__form_html_erb__2715412981826406656_70358324069160'
+app/views/locations/new.html.erb:9:in `_app_views_locations_new_html_erb___3428890215247901408_70358330218000'
+Started GET "/" for 127.0.0.1 at 2018-09-20 09:12:35 -0500
+Processing by LocationsController#new as HTML
+  Rendering locations/new.html.erb within layouts/application
+  Rendered locations/_form.html.erb (29.5ms)
+  Rendered locations/new.html.erb within layouts/application (31.5ms)
+Completed 200 OK in 531ms (Views: 528.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2018-09-20 09:14:29 -0500
+Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UD6uahFd7vbHFcb5Xdo2P8+vsWWpunYpYzUwHLge0h0Qx2zqNRMzYvQd6syYDmV5Zm18YxqHusCndIGKb8rWUg==", "location"=>{"address"=>"peachtree", "city"=>"atlanta"}, "commit"=>"Create Location"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/locations_controller.rb:43
+  [1m[36mLocation Create (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("address", "city", "latitude", "longitude", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["address", "peachtree"], ["city", "atlanta"], ["latitude", 33.75900715], ["longitude", -84.3868545344703], ["created_at", "2018-09-20 14:14:31.198798"], ["updated_at", "2018-09-20 14:14:31.198798"]]
+  ↳ app/controllers/locations_controller.rb:43
+  [1m[35m (7.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/locations_controller.rb:43
+Redirected to http://localhost:3000/locations/1
+Completed 302 Found in 2050ms (ActiveRecord: 8.4ms)
+
+
+Started GET "/locations/1" for 127.0.0.1 at 2018-09-20 09:14:31 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/locations_controller.rb:80
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 1337ms (Views: 18.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/locations/1" for 127.0.0.1 at 2018-09-20 09:37:26 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mLocation Load (0.1ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/locations_controller.rb:84
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 2684ms (Views: 19.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-09-20 09:37:33 -0500
+Processing by LocationsController#new as HTML
+  Rendering locations/new.html.erb within layouts/application
+  Rendered locations/_form.html.erb (3.3ms)
+  Rendered locations/new.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 37ms (Views: 31.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2018-09-20 09:37:45 -0500
+Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"44Wb9Ukgv38RFjtw8F8Ne9Itl6HLXj7eeKecx4Jc5X4FMTHNc7lFT5w8gGedM42d4gMQLQ/h1g4XfQqRToIMzA==", "location"=>{"address"=>"bella loma", "city"=>"atlanta"}, "commit"=>"Create Location"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/locations_controller.rb:47
+  [1m[36mLocation Create (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("address", "city", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "bella loma"], ["city", "atlanta"], ["created_at", "2018-09-20 14:37:47.255193"], ["updated_at", "2018-09-20 14:37:47.255193"]]
+  ↳ app/controllers/locations_controller.rb:47
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/locations_controller.rb:47
+Redirected to http://localhost:3000/locations/2
+Completed 302 Found in 1372ms (ActiveRecord: 7.0ms)
+
+
+Started GET "/locations/2" for 127.0.0.1 at 2018-09-20 09:37:47 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mLocation Load (0.1ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/locations_controller.rb:84
+Redirected to http://localhost:3000/
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-09-20 09:37:47 -0500
+Processing by LocationsController#new as HTML
+  Rendering locations/new.html.erb within layouts/application
+  Rendered locations/_form.html.erb (1.8ms)
+  Rendered locations/new.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 31ms (Views: 29.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2018-09-20 09:38:06 -0500
+Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mcq9YhBRXPDStuJ2ZQFpY5TeO3uHB2v6ZlaHitNPAwfZM3/iNB+BZOG+zkOg1TolPRz2fTQ6pxOiFzYcBJsHSA==", "location"=>{"address"=>"", "city"=>""}, "commit"=>"Create Location"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/locations_controller.rb:47
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/locations_controller.rb:47
+  Rendering locations/new.html.erb within layouts/application
+  Rendered locations/_form.html.erb (2.8ms)
+  Rendered locations/new.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 1733ms (Views: 34.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2018-09-20 09:38:22 -0500
+Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"QUtQ4mukEYStRQyvRcu12THILgvvXmabc0qQomX76tsBspJiT+rMEJ5NIJqAH+afmArjDVxjqnK3CyE0si/ulA==", "location"=>{"address"=>"peachtree", "city"=>"san antonio"}, "commit"=>"Create Location"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/locations_controller.rb:47
+  [1m[36mLocation Create (0.4ms)[0m  [1m[32mINSERT INTO "locations" ("address", "city", "latitude", "longitude", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["address", "peachtree"], ["city", "san antonio"], ["latitude", 33.9420457], ["longitude", -84.2938124], ["created_at", "2018-09-20 14:38:23.422511"], ["updated_at", "2018-09-20 14:38:23.422511"]]
+  ↳ app/controllers/locations_controller.rb:47
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/locations_controller.rb:47
+Redirected to http://localhost:3000/locations/3
+Completed 302 Found in 1195ms (ActiveRecord: 6.7ms)
+
+
+Started GET "/locations/3" for 127.0.0.1 at 2018-09-20 09:38:23 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mLocation Load (0.1ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/locations_controller.rb:84
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 2759ms (Views: 23.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-09-20 09:39:22 -0500
+Processing by LocationsController#new as HTML
+  Rendering locations/new.html.erb within layouts/application
+  Rendered locations/_form.html.erb (2.3ms)
+  Rendered locations/new.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 46ms (Views: 42.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2018-09-20 09:39:32 -0500
+Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9zUsQdaGcozzgL4lO5bwz3gOikBMG2/wumkrikgKgQURgYZ57B+IvH6qBTJW+nApSCANzIikhyDVs73chNRotw==", "location"=>{"address"=>"hehehehehehe", "city"=>"atlanta"}, "commit"=>"Create Location"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/locations_controller.rb:47
+  [1m[36mLocation Create (0.4ms)[0m  [1m[32mINSERT INTO "locations" ("address", "city", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "hehehehehehe"], ["city", "atlanta"], ["created_at", "2018-09-20 14:39:33.135661"], ["updated_at", "2018-09-20 14:39:33.135661"]]
+  ↳ app/controllers/locations_controller.rb:47
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/locations_controller.rb:47
+Redirected to http://localhost:3000/locations/4
+Completed 302 Found in 1139ms (ActiveRecord: 6.8ms)
+
+
+Started GET "/locations/4" for 127.0.0.1 at 2018-09-20 09:39:33 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mLocation Load (0.1ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/locations_controller.rb:84
+Redirected to http://localhost:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-09-20 09:39:33 -0500
+Processing by LocationsController#new as HTML
+  Rendering locations/new.html.erb within layouts/application
+  Rendered locations/_form.html.erb (1.1ms)
+  Rendered locations/new.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 21ms (Views: 18.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2018-09-20 09:42:12 -0500
+Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"YShg/tJqlSsCd0wtIwYmZc8Fxu8ZnkdqhH2FWD70rX8h0aJ+9iRIvzF/YBjm0nUjZscL6aqji4NAPDTO6SCpMA==", "location"=>{"address"=>"heheh", "city"=>"blabla bla"}, "commit"=>"Create Location"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/locations_controller.rb:47
+  [1m[36mLocation Create (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("address", "city", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "heheh"], ["city", "blabla bla"], ["created_at", "2018-09-20 14:42:14.277986"], ["updated_at", "2018-09-20 14:42:14.277986"]]
+  ↳ app/controllers/locations_controller.rb:47
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/locations_controller.rb:47
+Redirected to http://localhost:3000/locations/5
+Completed 302 Found in 1544ms (ActiveRecord: 7.7ms)
+
+
+Started GET "/locations/5" for 127.0.0.1 at 2018-09-20 09:42:14 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mLocation Load (0.1ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/locations_controller.rb:84
+Redirected to http://localhost:3000/
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-09-20 09:42:14 -0500
+Processing by LocationsController#new as HTML
+  Rendering locations/new.html.erb within layouts/application
+  Rendered locations/_form.html.erb (1.1ms)
+  Rendered locations/new.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 22ms (Views: 20.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-09-20 09:44:40 -0500
+Processing by LocationsController#new as HTML
+  Rendering locations/new.html.erb within layouts/application
+  Rendered locations/_form.html.erb (1.6ms)
+  Rendered locations/new.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 34ms (Views: 20.5ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2018-09-20 09:44:56 -0500
+Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"uWbt4NPGoU2zt9y4/6kZ6MHPIwsV2tm7ZiCcL3Tg4/b5ny9g94h82YC/8I06fUquaA3uDabnFVKiYS25ozTnuQ==", "location"=>{"address"=>"ehheh", "city"=>"csbdksbkv"}, "commit"=>"Create Location"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/locations_controller.rb:47
+  [1m[36mLocation Create (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("address", "city", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "ehheh"], ["city", "csbdksbkv"], ["created_at", "2018-09-20 14:44:57.812794"], ["updated_at", "2018-09-20 14:44:57.812794"]]
+  ↳ app/controllers/locations_controller.rb:47
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/locations_controller.rb:47
+Redirected to http://localhost:3000/locations/6
+Completed 302 Found in 1169ms (ActiveRecord: 7.3ms)
+
+
+Started GET "/locations/6" for 127.0.0.1 at 2018-09-20 09:44:57 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/locations_controller.rb:84
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.2ms)
+
+
+  
+TypeError (no implicit conversion of Symbol into String):
+  
+app/controllers/locations_controller.rb:28:in `show'
+Started GET "/locations/6" for 127.0.0.1 at 2018-09-20 09:45:09 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/locations_controller.rb:84
+Redirected to http://localhost:3000/
+Completed 302 Found in 11ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-09-20 09:45:10 -0500
+Processing by LocationsController#new as HTML
+  Rendering locations/new.html.erb within layouts/application
+  Rendered locations/_form.html.erb (1.6ms)
+  Rendered locations/new.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 22ms (Views: 20.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-09-20 10:03:25 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/azzamobeid/.rvm/gems/ruby-2.4.4/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by LocationsController#new as HTML
+  Rendering locations/new.html.erb within layouts/application
+  Rendered locations/_form.html.erb (4.0ms)
+  Rendered locations/new.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 3386ms (Views: 3366.7ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2018-09-20 10:03:40 -0500
+Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"V4vACHak83dxlwx7F625tiXD/uqA9TWhJrILLora5vEXcgKIUuou40KfIE7SeerwjAEz7DPI+Uji87q4XQ7ivg==", "location"=>{"address"=>"peachtree", "city"=>"atlanta"}, "commit"=>"Create Location"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/locations_controller.rb:47
+  [1m[36mLocation Create (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("address", "city", "latitude", "longitude", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["address", "peachtree"], ["city", "atlanta"], ["latitude", 33.75900715], ["longitude", -84.3868545344703], ["created_at", "2018-09-20 15:03:43.479680"], ["updated_at", "2018-09-20 15:03:43.479680"]]
+  ↳ app/controllers/locations_controller.rb:47
+  [1m[35m (7.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/locations_controller.rb:47
+Redirected to http://localhost:3000/locations/7
+Completed 302 Found in 3064ms (ActiveRecord: 8.2ms)
+
+
+Started GET "/locations/7" for 127.0.0.1 at 2018-09-20 10:03:43 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/locations_controller.rb:84
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (342.4ms)
+Completed 500 Internal Server Error in 3665ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `index' for #<#<Class:0x00007ff2366a1690>:0x00007ff23a54cf20>):
+    34: 	scrollwheel: false
+    35:       };
+    36: 
+    37:       var map = new google.maps.Map(document.getElementById('map-canvas<%= index %>'), mapOptions);
+    38: 
+    39: 
+    40:       // This is the text for our bus
+  
+app/views/locations/show.html.erb:37:in `block in _app_views_locations_show_html_erb___4606536873756246297_70339168726520'
+app/views/locations/show.html.erb:18:in `each'
+app/views/locations/show.html.erb:18:in `_app_views_locations_show_html_erb___4606536873756246297_70339168726520'
+Started GET "/locations/7" for 127.0.0.1 at 2018-09-20 10:08:21 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/locations_controller.rb:84
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (297.2ms)
+Completed 500 Internal Server Error in 2812ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `show' for #<#<Class:0x00007ff2366a1690>:0x00007ff23c1b4118>):
+    34: 	scrollwheel: false
+    35:       };
+    36: 
+    37:       var map = new google.maps.Map(document.getElementById('map-canvas<%= show %>'), mapOptions);
+    38: 
+    39: 
+    40:       // This is the text for our bus
+  
+app/views/locations/show.html.erb:37:in `block in _app_views_locations_show_html_erb___4606536873756246297_70339183617520'
+app/views/locations/show.html.erb:18:in `each'
+app/views/locations/show.html.erb:18:in `_app_views_locations_show_html_erb___4606536873756246297_70339183617520'
+Started GET "/locations/7" for 127.0.0.1 at 2018-09-20 10:14:40 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/locations_controller.rb:84
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 3096ms (Views: 24.3ms | ActiveRecord: 0.2ms)
+
+
